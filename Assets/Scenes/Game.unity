@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCamera: {fileID: 519420031}
+  slider: {fileID: 1510886280}
   UItext: {fileID: 463443428}
 --- !u!4 &80030755
 Transform:

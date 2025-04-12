@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class GameManager : MonoBehaviour
 
     private int _initialScore = 0;
     private int _score;
+    private float _sliderHeight => slider.value;
+
+    public Slider slider;
 
     public TextMeshProUGUI UItext;
 
@@ -29,6 +33,11 @@ public class GameManager : MonoBehaviour
     public int GetScore()
     {
         return _score;
+    }
+
+    public float GetSliderHieght()
+    {
+        return _sliderHeight;
     }
 
     private void Start()

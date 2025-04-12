@@ -14,7 +14,7 @@ public class LocalSaveManager : MonoBehaviour
 
     [SerializeField] GameObject housePrefab;
 
-    private void Awake()
+    private void Start()
     {
         LoadFromLocal();
     }
@@ -59,6 +59,7 @@ public class LocalSaveManager : MonoBehaviour
     public void UpdatePlayerDataObject()
     {
         playerData.level = 1;
+        playerData.sliderHeight = GameManager.Instance.GetSliderHieght();
         playerData.currentScore = GameManager.Instance.GetScore();
     }
 
@@ -74,6 +75,8 @@ public class LocalSaveManager : MonoBehaviour
             GameObject newHouse = GameObject.Instantiate(housePrefab);
             newHouse.gameObject.transform.rotation = Quaternion.Euler(rotation);
         }
+
+        GameManager.Instance.slider.value = playerData.sliderHeight;
     }
 
     public void ClearBoardNewGame()
@@ -84,6 +87,8 @@ public class LocalSaveManager : MonoBehaviour
         {
             Destroy(house);
         }
+
+        GameManager.Instance.slider.value = 0;
     }
 
 
