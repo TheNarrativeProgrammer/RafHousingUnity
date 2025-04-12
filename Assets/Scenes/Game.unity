@@ -158,6 +158,7 @@ MonoBehaviour:
     houseLocationRotations:
       houseLocation: []
       houseRotation: []
+  housePrefab: {fileID: 6083141125498250776, guid: 5b432a27193273a45ab4d33c40faa43c, type: 3}
 --- !u!4 &40837604
 Transform:
   m_ObjectHideFlags: 0
@@ -1882,7 +1883,7 @@ GameObject:
   - component: {fileID: 1499290283}
   - component: {fileID: 1499290282}
   m_Layer: 5
-  m_Name: LoadGame
+  m_Name: Clear Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1954,7 +1955,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 40837603}
         m_TargetAssemblyTypeName: LocalSaveManager, Assembly-CSharp
-        m_MethodName: LoadFromLocal
+        m_MethodName: ClearBoardNewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2620,9 +2621,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Load Game
-
-'
+  m_text: Clear Board
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

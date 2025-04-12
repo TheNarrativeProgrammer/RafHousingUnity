@@ -12,6 +12,7 @@ public class LocalSaveManager : MonoBehaviour
     public PlayerData playerData;                                               //data-object --> class that holds data for player
     private string filename = "localRafHousingPlayerData.json";                 //name of file stored in persistent path
 
+    [SerializeField] GameObject housePrefab;
 
     private void Awake()
     {
@@ -52,11 +53,6 @@ public class LocalSaveManager : MonoBehaviour
 
         playerData.houseLocationRotations.houseLocation = location;
         playerData.houseLocationRotations.houseRotation = rotation;
-        
-
-
-
-       
 
     }
 
@@ -64,6 +60,30 @@ public class LocalSaveManager : MonoBehaviour
     {
         playerData.level = 1;
         playerData.currentScore = GameManager.Instance.GetScore();
+    }
+
+    private void PopulateBoardAndLoadData()
+    {
+        foreach(Vector3 location in playerData.houseLocationRotations.houseLocation)
+        {
+            GameObject newHouse = GameObject.Instantiate(housePrefab);
+            newHouse.gameObject.transform.position = location;
+        }
+        foreach (Vector3 rotation in playerData.houseLocationRotations.houseRotation)
+        {
+            GameObject newHouse = GameObject.Instantiate(housePrefab);
+            newHouse.gameObject.transform.rotation = Quaternion.Euler(rotation);
+        }
+    }
+
+    public void ClearBoardNewGame()
+    {
+        GameObject[] housesInLevel = GameObject.FindGameObjectsWithTag("house");
+
+        foreach(GameObject house in housesInLevel)
+        {
+            Destroy(house);
+        }
     }
 
 
@@ -77,6 +97,7 @@ public class LocalSaveManager : MonoBehaviour
         {
             string json = File.ReadAllText(path);                               //read data in file, stringify and save to var - json
             playerData = JsonUtility.FromJson<PlayerData>(json);                //convert json to data-object PlayerData and save to local variable playerData
+            PopulateBoardAndLoadData();
             Debug.Log("game data loaded from + " + path);
             Debug.Log($"Player:  {playerData.playerName}, lastupdated : {playerData.lastupdated}");
         }
