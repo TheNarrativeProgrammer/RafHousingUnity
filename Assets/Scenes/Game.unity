@@ -129,8 +129,9 @@ GameObject:
   m_Component:
   - component: {fileID: 40837604}
   - component: {fileID: 40837603}
+  - component: {fileID: 40837605}
   m_Layer: 0
-  m_Name: LocalSaveManager
+  m_Name: SaveManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -174,6 +175,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &40837605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40837602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc29b74de4e50d47bc7937c336eedf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localSaveManager: {fileID: 40837603}
 --- !u!1 &80030753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,6 +1402,18 @@ MonoBehaviour:
       - m_Target: {fileID: 40837603}
         m_TargetAssemblyTypeName: LocalSaveManager, Assembly-CSharp
         m_MethodName: SaveToLocal
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 40837605}
+        m_TargetAssemblyTypeName: CloudSaving, Assembly-CSharp
+        m_MethodName: SyncWithCloud
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
