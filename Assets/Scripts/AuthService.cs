@@ -43,6 +43,17 @@ public class AuthService : MonoBehaviour
         }
     }
 
+    //METHOD TO GET AUTHORIZATION TOKEN
+    //public static class AuthoriztionToken
+    //{
+    //    public static string GetToken() => PlayerPrefs.GetString("accessToken");
+    //}
+
+    //SignInResponse --> Class that's wrapper for repsone.
+    ////TOKEN 
+    //downloadHandler --> contains the token as a JSON. Within body, "message" in 1 key, and "token" is another.
+    
+
     //SIGN IN REQUEST
 
     public IEnumerator SignIn(string username, string password, System.Action<bool, string> callback)
@@ -50,18 +61,29 @@ public class AuthService : MonoBehaviour
         var payload = new SignInRequest { username = username, password = password };
         string jsonData = JsonUtility.ToJson(payload);
 
-        string url = config.baseUrl + "api/auth/signin";
+        string url = config.baseUrl + "/api/auth/signin";
 
         using (UnityWebRequest www = new UnityWebRequest(url, "POST"))
         {
             www.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(jsonData));
-            www.downloadHandler = new DownloadHandlerBuffer();
+            www.downloadHandler = new DownloadHandlerBuffer();                      
             www.SetRequestHeader("Content-Type", "application/json");
 
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.Success)
             {
+                
+                string reponseStringifiedJson = www.downloadHandler.text;                                   //Get reponse and save as stringified JSON
+                SignInResponse response = JsonUtility.FromJson<SignInResponse>(reponseStringifiedJson);     //cast JSon to SignInResponse class
+                                                                                                            //response.token --> use to access token key
+                Debug.Log("Token" + response.token);
+
+                PlayerPrefs.SetString("accessToken", response.token);
+                PlayerPrefs.Save();
+
+                SessionManager.Instance.SetAuthToken(response.token);
+
                 callback(true, www.downloadHandler.text);
             }
             else

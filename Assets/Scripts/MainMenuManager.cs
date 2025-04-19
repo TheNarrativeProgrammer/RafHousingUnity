@@ -84,6 +84,6 @@ public class MainMenuManager : MonoBehaviour
 
         //Note: this is overrideing the problem with logging in. Remove this line once problem is fixed
         SceneManager.LoadScene(gameSceneName);
-
+        SessionTracker.Instance.OnLogin();
     }
 }

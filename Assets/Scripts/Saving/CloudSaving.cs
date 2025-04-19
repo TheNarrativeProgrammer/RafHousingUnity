@@ -32,7 +32,10 @@ public class CloudSaving : MonoBehaviour
         
         WWWForm form = new WWWForm();                                   //Create new WWWForm object --> used to make the call
 
-        form.AddField("plainJson", localJson);                          //AddField --> add header. This is store in req body. - req.body.plainJson 
+                                                                        //You can add Fields OR add headers.
+                                                                        //Headers --> are NOT part of the body. They are a key/value pair outside the body
+        form.AddField("plainJson", localJson);                          //AddField --> are inside the body. This is store in req body. - req.body.plainJson 
+                                                                        //Field --> a key / value pair within the payload. 
 
         using (UnityWebRequest www = UnityWebRequest.Post(serverUrl, form))//make call
         {

@@ -8,6 +8,7 @@ public class SessionManager : MonoBehaviour
 
     private void Awake()
     {
+        AuthToken = PlayerPrefs.GetString("accessToken");
         if(Instance != null && Instance != this)
         {
             Destroy(this.gameObject);

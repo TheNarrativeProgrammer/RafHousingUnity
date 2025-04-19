@@ -35,6 +35,12 @@ public class GameManager : MonoBehaviour
         return _score;
     }
 
+    public int GetNumberOfHouses()
+    {
+        GameObject[] houesOnBoard = GameObject.FindGameObjectsWithTag("house");
+        return houesOnBoard.Length;
+    }
+
     public float GetSliderHieght()
     {
         return _sliderHeight;
